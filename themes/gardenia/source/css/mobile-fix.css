@@ -162,10 +162,10 @@ body {
     background: 
       linear-gradient(
           to top,
-          #eee   0%,
-          #ffffff00  30%
+          #eee   5%,
+          #ffffff00  35%
         ),
-      url('https://s2.loli.net/2025/05/12/lvRs7VKSpwTh5bA.jpg') center #000 !important;
+      url('https://s2.loli.net/2025/05/12/lvRs7VKSpwTh5bA.jpg') center #eee !important;
     background-size: cover !important;
     z-index: 1 !important;
   }
