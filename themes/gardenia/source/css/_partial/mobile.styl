@@ -1,0 +1,100 @@
+@media mq-mobile
+  #mobile-nav
+    position: fixed
+    top: 0
+    left: -mobile-nav-width
+    width: mobile-nav-width
+    height: 100%
+    background: color-mobile-nav-background
+    border-right: 1px solid #fff
+    z-index: 999
+    overflow-y: auto
+    -webkit-overflow-scrolling: touch
+    transition: left 0.3s ease
+    .mobile-nav-on &
+      left: 0
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)
+    .mobile-nav-off &
+      left: -mobile-nav-width
+      box-shadow: none
+
+@media mq-mobile
+  .mobile-nav-link
+    display: block
+    color: color-grey
+    text-decoration: none
+    padding: 15px 20px
+    font-weight: bold
+    &:hover
+      color: #fff
+      background: rgba(255, 255, 255, 0.1)
+
+// 优化移动端头部
+@media mq-mobile
+  #header
+    height: auto
+    min-height: 180px
+    
+  #header-title
+    position: relative
+    top: auto
+    margin-top: 60px
+    
+  #main-nav-toggle
+    display: block
+    position: absolute
+    top: 10px
+    left: 10px
+    width: 40px
+    height: 40px
+    padding: 0
+    background: rgba(0, 0, 0, 0.5)
+    border-radius: 4px
+    color: #fff
+    text-align: center
+    line-height: 40px
+    font-size: 20px
+    z-index: 2
+    
+  #logo
+    font-size: 24px
+    
+  #subtitle
+    font-size: 14px
+
+// 优化移动端文章列表
+@media mq-mobile
+  .article
+    padding: 15px
+    
+  .article-title
+    font-size: 1.4em
+    
+  .article-entry
+    font-size: 0.95em
+    
+  .article-meta
+    font-size: 0.9em
+    
+  // 优化归档页面
+  .archives-wrap
+    margin: 20px 0
+    
+  // 优化页面导航
+  #page-nav
+    margin: 20px auto
+    
+    .page-number
+      display: none
+      
+    .prev, .next
+      padding: 8px 16px
+
+// 优化移动端页脚
+@media mq-mobile
+  #footer
+    padding: 20px 0
+    
+  .footer-content
+    flex-direction: column
+    text-align: center

@@ -1,0 +1,190 @@
+/* 自定义样式 */
+
+/* PC端导航和搜索框优化 */
+@media screen and (min-width: 768px) {
+  /* 导航链接样式增强 */
+  .main-nav-link {
+    font-size: 1.2em !important;
+    font-weight: 600 !important;
+    opacity: 1 !important;
+    padding: 15px 25px !important;
+    transition: all 0.3s ease !important;
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    border-radius: 6px !important;
+    margin: 5px 8px !important;
+    color: #fff !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3) !important;
+    letter-spacing: 1px !important;
+    display: inline-block !important;
+  }
+  
+  .main-nav-link:hover {
+    opacity: 1 !important;
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4) !important;
+    color: #fff !important;
+  }
+  
+  /* 调整导航栏位置 */
+  #main-nav {
+    margin-top: 10px !important;
+    position: relative !important;
+    z-index: 10 !important;
+    float: none !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+  
+  /* 搜索框样式增强 */
+  #search-form-wrap {
+    width: 250px !important;
+    height: 45px !important;
+    transition: all 0.3s ease !important;
+    top: 12px !important;
+  }
+  
+  #search-form-wrap.on {
+    right: 15px !important;
+    opacity: 1 !important;
+  }
+  
+  .search-form {
+    border-radius: 25px !important;
+    padding: 10px 20px !important;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.4) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+  }
+  
+  .search-form-input {
+    font-size: 16px !important;
+    padding: 3px 8px !important;
+    font-weight: 500 !important;
+  }
+  
+  .search-form-submit {
+    font-size: 18px !important;
+    color: #333 !important;
+    right: 15px !important;
+  }
+  
+  .search-form-submit:hover {
+    color: #000 !important;
+  }
+  
+  /* 搜索按钮样式增强 */
+  .nav-search-btn {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    border-radius: 50% !important;
+    padding: 20px !important;
+    margin-right: 15px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  .nav-search-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5) !important;
+  }
+  
+  /* 调整子导航位置 */
+  #sub-nav {
+    margin-top: 10px !important;
+    position: absolute !important;
+    right: 0 !important;
+    top: 0 !important;
+  }
+  
+  /* 调整整体布局 */
+  #header-inner {
+    margin-top: 20px !important;
+    position: relative !important;
+  }
+}
+
+/* 移动端优化 */
+@media screen and (max-width: 479px) {
+  /* 确保内容在移动端正确显示 */
+  .outer {
+    padding: 0 10px;
+  }
+  
+  /* 优化文章标题 */
+  .article-title {
+    font-size: 1.5em !important;
+    line-height: 1.3 !important;
+  }
+  
+  /* 优化文章内容 */
+  .article-entry {
+    font-size: 16px !important;
+  }
+  
+  /* 优化代码块 */
+  .article-entry pre,
+  .article-entry code {
+    font-size: 14px !important;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  /* 优化表格 */
+  .article-entry table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  /* 优化引用块 */
+  .article-entry blockquote {
+    margin: 1em 0 !important;
+    padding: 0.5em 1em !important;
+  }
+  
+  /* 修复页面加载时的闪烁问题 */
+  body {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* 修复移动导航菜单 */
+  #mobile-nav {
+    will-change: transform;
+  }
+  
+  /* 优化移动端菜单按钮 */
+  #main-nav-toggle {
+    transition: background-color 0.3s ease;
+  }
+  
+  #main-nav-toggle.scrolled {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  
+  /* 优化移动端链接点击区域 */
+  .mobile-nav-link {
+    padding: 15px 20px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .mobile-nav-link.active {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* 平板设备优化 */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  /* 平板设备特定样式 */
+  .outer {
+    padding: 0 15px;
+  }
+  
+  /* 优化平板设备上的导航 */
+  #header-title {
+    margin-top: 40px;
+  }
+}

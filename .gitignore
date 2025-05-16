@@ -1,0 +1,19 @@
+# Default
+.DS_Store
+Thumbs.db
+db.json
+*.log
+node_modules/
+public/
+.deploy*/
+_multiconfig.yml
+
+# Cursor
+.specstory/
+.cursorindexingignore
+
+# Package
+package-lock.json
+
+# SpecStory explanation file
+.specstory/.what-is-this.md
