@@ -1,0 +1,50 @@
+/* Custom styles for the blog */
+
+#banner {
+  display: block !important;
+  position: relative;
+  /* height: 500px; */
+  width: 100%;
+  background: url('https://s2.loli.net/2025/05/12/lvRs7VKSpwTh5bA.jpg') center center;
+  background-size: cover;
+  z-index: 1;
+}
+
+.nav-icon, .main-nav-link {
+  float: left;
+  color: #353535;
+  font-size: 16px;
+  font-weight: bold !important;
+  opacity: 1;
+  text-decoration: none;
+  text-shadow: 0 1px rgba(0,0,0,0.2);
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+  display: block;
+}
+
+/* 添加一个基础padding，确保链接有最小间距 */
+.main-nav-link {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+@media screen and (max-width: 479px) {
+  /* 导航链接样式增强 */
+  .main-nav-link {
+    transform: translateX(-10px) !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  /* 导航链接样式增强 */
+  .main-nav-link {
+    transform: translateX(10px) !important;
+  }
+}
+
+.nav-rss-btn, .nav-search-btn {
+  display: none !important;
+}
