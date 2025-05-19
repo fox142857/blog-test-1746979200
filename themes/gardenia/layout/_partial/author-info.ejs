@@ -1,0 +1,521 @@
+<div class="custom-home-container">
+  <div class="profile-section">
+    <div class="profile-image-container">
+      <div class="profile-image">
+        <% if (theme.author && theme.author.avatar) { %>
+          <img src="<%- url_for(theme.author.avatar) %>" alt="<%= config.author %>">
+        <% } else { %>
+          <img src="https://s2.loli.net/2025/05/13/mWk7ZwDKgR4nQJS.png" alt="<%= config.author %>">
+        <% } %>
+      </div>
+      
+      <div class="avatar-social-links">
+        <% if (theme.author && theme.author.contacts) { %>
+          <% for (var contact in theme.author.contacts) { %>
+            <div class="social-link-container">
+              <button type="button" class="contact-button" data-contact-type="<%= contact %>" data-contact-value="<%= theme.author.contacts[contact] %>">
+                <img src="<%- url_for('/img/icons/' + contact + '.png') %>" alt="<%= contact %> 图标" class="contact-icon" />
+                <span><%= contact %></span>
+              </button>
+            </div>
+          <% } %>
+        <% } %>
+        
+        <% if (theme.reward && (theme.reward.wechat || theme.reward.alipay)) { %>
+          <% if (theme.reward.wechat) { %>
+            <div class="social-link-container">
+              <button type="button" class="contact-button" data-payment-type="wechat">
+                <img src="<%- url_for('/img/icons/wechat-pay.png') %>" alt="WeChat Pay Icon" class="contact-icon" />
+                <span>wechat</span>
+              </button>
+            </div>
+          <% } %>
+          
+          <% if (theme.reward.alipay) { %>
+            <div class="social-link-container">
+              <button type="button" class="contact-button" data-payment-type="alipay">
+                <img src="<%- url_for('/img/icons/alipay.png') %>" alt="Alipay Icon" class="contact-icon" />
+                <span>alipay</span>
+              </button>
+            </div>
+          <% } %>
+        <% } %>
+      </div>
+    </div>
+    
+    <div class="profile-content">
+      <h1 class="author-name"><%= config.author %></h1>
+      <% 
+        // 查找作者简介文章
+        let authorPost = null;
+        site.posts.forEach(function(post) {
+          if (post.slug === 'home/About-the-Author') {
+            authorPost = post;
+          }
+        });
+      %>
+      <% if (authorPost) { %>
+        <div class="author-bio">
+          <%- authorPost.content %>
+        </div>
+      <% } else if (theme.author && theme.author.bio) { %>
+        <p class="author-bio"><%= theme.author.bio %></p>
+      <% } %>
+    </div>
+  </div>
+  
+  <div class="blog-intro">
+    <% 
+      // 查找博客简介文章
+      let introPost = null;
+      site.posts.forEach(function(post) {
+        if (post.slug === 'home/Blog-Introduction') {
+          introPost = post;
+        }
+      });
+    %>
+    <% if (introPost) { %>
+      <div class="blog-intro-content">
+        <%- introPost.content %>
+      </div>
+    <% } else { %>
+      <p><%= config.description || '欢迎来到我的博客，这里记录了我的学习、思考和生活。' %></p>
+    <% } %>
+  </div>
+  
+  <!-- 联系方式弹窗 -->
+  <div id="contact-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeContactModal()">&times;</span>
+      <h3 id="modal-title"></h3>
+      <p id="modal-content"></p>
+    </div>
+  </div>
+  
+  <!-- 联系方式弹窗脚本 -->
+  <script>
+    // 页面加载完成后添加事件监听器
+    document.addEventListener('DOMContentLoaded', function() {
+      // 为所有联系方式按钮添加点击事件
+      var buttons = document.querySelectorAll('.contact-button');
+      buttons.forEach(function(button) {
+        button.addEventListener('click', function() {
+          // 检查是否是支付按钮
+          var paymentType = this.getAttribute('data-payment-type');
+          if (paymentType) {
+            showPaymentModal(paymentType);
+          } else {
+            // 处理联系方式按钮
+            var type = this.getAttribute('data-contact-type');
+            var value = this.getAttribute('data-contact-value');
+            showContactModal(type, value);
+          }
+        });
+      });
+    });
+    
+    // 显示联系方式弹窗
+    function showContactModal(type, value) {
+      var modal = document.getElementById('contact-modal');
+      var modalTitle = document.getElementById('modal-title');
+      var modalContent = document.getElementById('modal-content');
+      
+      // 直接显示链接，不显示标题
+      modalTitle.style.display = 'none';
+      
+      // 根据联系方式类型，设置不同的展示形式
+      if (type === 'email') {
+        modalContent.innerHTML = '<a href="mailto:' + value + '">' + value + '</a>';
+      } else if (type === 'github') {
+        modalContent.innerHTML = '<a href="' + value + '" target="_blank">' + value + '</a>';
+      } else {
+        modalContent.textContent = value;
+      }
+      
+      // 显示弹窗
+      modal.style.display = 'block';
+      
+      // 点击弹窗外部关闭弹窗
+      window.onclick = function(event) {
+        if (event.target === modal) {
+          closeContactModal();
+        }
+      };
+    }
+    
+    // 关闭联系方式弹窗
+    function closeContactModal() {
+      var modal = document.getElementById('contact-modal');
+      modal.style.display = 'none';
+    }
+  </script>
+  
+  <!-- 支付二维码弹窗 -->
+  <div id="payment-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" onclick="closePaymentModal()">&times;</span>
+      <div class="payment-image-container">
+        <img id="payment-qr-code" src="" alt="支付二维码" class="payment-img" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 显示支付二维码弹窗
+    function showPaymentModal(type) {
+      var modal = document.getElementById('payment-modal');
+      var qrCode = document.getElementById('payment-qr-code');
+      
+      // 设置对应的二维码图片
+      if (type === 'wechat') {
+        qrCode.src = '<%- url_for(theme.reward.wechat) %>';
+        qrCode.alt = '微信支付二维码';
+      } else if (type === 'alipay') {
+        qrCode.src = '<%- url_for(theme.reward.alipay) %>';
+        qrCode.alt = '支付宝二维码';
+      }
+      
+      // 显示弹窗
+      modal.style.display = 'block';
+      
+      // 点击弹窗外部关闭弹窗
+      window.onclick = function(event) {
+        if (event.target === modal) {
+          closePaymentModal();
+        }
+      };
+    }
+    
+    // 关闭支付二维码弹窗
+    function closePaymentModal() {
+      var modal = document.getElementById('payment-modal');
+      modal.style.display = 'none';
+    }
+  </script>
+  
+  <style>
+    .custom-home-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    
+    @media (min-width: 768px) {
+      .profile-section {
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+      }
+    }
+    
+    .profile-image-container {
+      margin-bottom: 2rem;
+      width: 180px;
+    }
+    
+    @media (min-width: 768px) {
+      .profile-image-container {
+        margin-right: 3rem;
+        margin-bottom: 0;
+      }
+    }
+    
+    .profile-image {
+      margin-bottom: 1rem;
+    }
+    
+    .profile-image img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .profile-content {
+      flex: 1;
+    }
+    
+    .author-name {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    
+    .author-bio {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+    
+    .author-bio p {
+      margin-bottom: 0.5rem;
+    }
+    
+    .author-bio h1, .author-bio h2, .author-bio h3, .author-bio h4, .author-bio h5, .author-bio h6 {
+      display: none; /* 隐藏文章中的标题 */
+    }
+    
+    /* 添加作者简介中列表项的样式 */
+    .author-bio ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .author-bio li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .avatar-social-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+    
+    .social-link-container {
+      width: 100%;
+    }
+    
+    .contact-button {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0.5rem;
+      background: #f5f5f5;
+      border: none;
+      border-radius: 20px;
+      color: #333;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      gap: 0.5rem;
+    }
+    
+    .contact-button:hover {
+      background: #e0e0e0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .contact-icon {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
+    
+    .contact-button span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;  /* 统一字体 */
+    }
+    
+    .blog-intro, .donation-section {
+      margin-bottom: 3rem;
+      background: #f9f9f9;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+    
+    .blog-intro h2, .donation-section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #333;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 0.5rem;
+    }
+    
+    .blog-intro p, .donation-section p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #666;
+    }
+    
+    .blog-intro-content {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    .blog-intro-content h1 {
+      display: none; /* 隐藏文章中的标题，因为已经有了博客简介的标题 */
+    }
+    
+    .blog-intro-content p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* 添加博客简介中加粗文字的样式 */
+    .blog-intro-content strong {
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    
+    .donation-container {
+      display: flex;
+      margin-top: 2rem;
+      align-items: flex-start;
+    }
+    
+    .donation-buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      margin-right: 2rem;
+    }
+    
+    .donation-button {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0.5rem 1rem;
+      background: #f5f5f5;
+      border: none;
+      border-radius: 30px;
+      color: #333;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 180px;
+      text-align: left;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.35);
+    }
+    
+    .donation-button:hover {
+      background: #e0e0e0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.35);
+    }
+    
+    .donation-button.active {
+      background: #e0e0e0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.35);
+      border: 2px solid #808080;
+    }
+    
+    .donation-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 0.5rem;
+    }
+    
+    .reward-image-area {
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+      min-height: 220px;
+    }
+    
+    .reward-image-container {
+      display: none;
+    }
+    
+    .reward-image-container.active {
+      display: block;
+    }
+    
+    .reward-img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      border: 1px solid #eee;
+      border-radius: 5px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+    
+    /* 弹窗样式 */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+    
+    .modal-content {
+      background-color: #fefefe;
+      margin: 25% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      position: relative;
+      text-align: center;
+    }
+    
+    .close-button {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      color: #aaa;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .close-button:hover,
+    .close-button:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    #modal-content {
+      color: #666;
+      font-size: 1.2rem;
+      word-break: break-all;
+      margin: 0;
+      padding: 10px 0;
+    }
+    
+    #modal-content a {
+      color: #4caf50;
+      text-decoration: none;
+    }
+    
+    #modal-content a:hover {
+      text-decoration: underline;
+    }
+    
+    .payment-image-container {
+      text-align: center;
+      padding: 1rem;
+    }
+    
+    .payment-img {
+      max-width: 200px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    /* 添加个人简介中加粗文字的样式 */
+    .author-bio strong {
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+  </style>
+</div> 

@@ -1,0 +1,70 @@
+<%
+// 辅助函数：检查文章是否应该被排除
+function shouldExcludePost(post) {
+  if (!post) return true;
+  
+  const config = theme.archive_exclude;
+  if (!config) return false;
+  
+  const excludePosts = config.posts || [];
+  const excludeDirs = config.directories || [];
+  
+  // 检查文章路径是否在排除列表中
+  const inExcludePosts = excludePosts.some(path => {
+    return post.path.startsWith(path);
+  });
+  
+  // 检查文章所在目录是否在排除列表中
+  const inExcludeDirs = excludeDirs.some(dir => {
+    return post.source.includes(`_posts/${dir}/`);
+  });
+  
+  // 如果文章路径或所在目录在排除列表中，则排除该文章
+  return inExcludePosts || inExcludeDirs;
+}
+
+// 获取不应该被排除的前一篇文章
+function getValidPrevPost(post) {
+  let currentPost = post.prev;
+  while (currentPost && shouldExcludePost(currentPost)) {
+    currentPost = currentPost.prev;
+  }
+  return currentPost;
+}
+
+// 获取不应该被排除的后一篇文章
+function getValidNextPost(post) {
+  let currentPost = post.next;
+  while (currentPost && shouldExcludePost(currentPost)) {
+    currentPost = currentPost.next;
+  }
+  return currentPost;
+}
+
+// 获取有效的前后文章
+const validPrev = getValidPrevPost(post);
+const validNext = getValidNextPost(post);
+%>
+
+<% if (validPrev || validNext){ %>
+<nav id="article-nav">
+  <% if (validPrev){ %>
+    <a href="<%- url_for(validPrev.path) %>" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><%= __('newer') %></strong>
+      <div class="article-nav-title">
+        <% if (validPrev.title){ %>
+          <%= validPrev.title %>
+        <% } else { %>
+          (no title)
+        <% } %>
+      </div>
+    </a>
+  <% } %>
+  <% if (validNext){ %>
+    <a href="<%- url_for(validNext.path) %>" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><%= __('older') %></strong>
+      <div class="article-nav-title"><%= validNext.title %></div>
+    </a>
+  <% } %>
+</nav>
+<% } %>

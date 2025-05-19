@@ -1,0 +1,185 @@
+<div class="custom-home-container">
+  <div class="profile-section">
+    <div class="profile-image">
+      <img src="<%- url_for(theme.author && theme.author.avatar ? theme.author.avatar : 'https://s2.loli.net/2025/05/13/mWk7ZwDKgR4nQJS.png') %>" alt="<%= config.author %>" />
+    </div>
+    
+    <div class="profile-content">
+      <h1 class="author-name"><%= config.author %></h1>
+      <p class="author-bio"><%= theme.author && theme.author.bio ? theme.author.bio : '' %></p>
+      
+      <div class="social-links">
+        <% if (theme.author && theme.author.contacts) { %>
+          <% for (var contact in theme.author.contacts) { %>
+            <a href="<%= theme.author.contacts[contact] %>" target="_blank" class="social-link">
+              <i class="fa fa-<%= contact %>"></i> <%= contact %>
+            </a>
+          <% } %>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="blog-intro">
+    <p><%= config.description || '欢迎来到我的博客，这里记录了我的学习、思考和生活。' %></p>
+  </div>
+  
+  <% if (theme.reward && (theme.reward.wechat || theme.reward.alipay)) { %>
+    <div class="donation-section">
+      <h2>支持与打赏</h2>
+      <p>如果您喜欢我的内容，可以考虑通过以下方式支持我：</p>
+      
+      <div class="donation-methods">
+        <% if (theme.reward.wechat) { %>
+          <div class="donation-method">
+            <img src="<%- url_for(theme.reward.wechat) %>" alt="微信支持" />
+            <p>微信支持</p>
+          </div>
+        <% } %>
+        
+        <% if (theme.reward.alipay) { %>
+          <div class="donation-method">
+            <img src="<%- url_for(theme.reward.alipay) %>" alt="支付宝支持" />
+            <p>支付宝支持</p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  <% } %>
+  
+  <style>
+    .custom-home-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    
+    @media (min-width: 768px) {
+      .profile-section {
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+      }
+    }
+    
+    .profile-image {
+      margin-bottom: 2rem;
+    }
+    
+    @media (min-width: 768px) {
+      .profile-image {
+        margin-right: 3rem;
+        margin-bottom: 0;
+      }
+    }
+    
+    .profile-image img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .profile-content {
+      flex: 1;
+    }
+    
+    .author-name {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    
+    .author-bio {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+    
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background: #f5f5f5;
+      border-radius: 30px;
+      color: #333;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+      background: #e0e0e0;
+      transform: translateY(-2px);
+    }
+    
+    .social-link i {
+      margin-right: 0.5rem;
+    }
+    
+    .blog-intro, .donation-section {
+      margin-bottom: 3rem;
+      background: #f9f9f9;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    }
+    
+    .donation-section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #333;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 0.5rem;
+    }
+    
+    .blog-intro p, .donation-section p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #666;
+    }
+    
+    .donation-methods {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .donation-method {
+      text-align: center;
+    }
+    
+    .donation-method img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      border: 1px solid #eee;
+      border-radius: 5px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      margin-bottom: 0.5rem;
+    }
+    
+    .donation-method p {
+      font-size: 1rem;
+      color: #666;
+    }
+  </style>
+</div> 

@@ -1,0 +1,5 @@
+<% if (theme.home && theme.home.html_file) { %>
+  <%- partial(theme.home.html_file) %>
+<% } else { %>
+  <%- partial('_partial/author-info') %>
+<% } %> 

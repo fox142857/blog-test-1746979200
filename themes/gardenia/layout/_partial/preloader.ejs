@@ -1,0 +1,479 @@
+<!-- 自定义加载动画 -->
+<% if (theme.preloader) { %>
+<div id="preloader">
+  <div class="loading">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+  <div class="loading-text">
+    <span class="loading-text-words">精</span>
+    <span class="loading-text-words">彩</span>
+    <span class="loading-text-words">内</span>
+    <span class="loading-text-words">容</span>
+    <span class="loading-text-words">加</span>
+    <span class="loading-text-words">载</span>
+    <span class="loading-text-words">中</span>
+    <span class="loading-text-words">.</span>
+    <span class="loading-text-words">.</span>
+    <span class="loading-text-words">.</span>
+  </div>
+</div>
+
+<!-- 加载动画样式 -->
+<style>
+  #preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #808080;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  
+  .js-loaded #preloader {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .loading {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 50%;
+  }
+  
+  .loading-text {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .loading-text-words {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    animation: loading-text-animation 2s infinite;
+  }
+  
+  @keyframes loading-text-animation {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-5px);
+      opacity: 0.7;
+    }
+  }
+  
+  .loading-text-words:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .loading-text-words:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .loading-text-words:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  .loading-text-words:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+  .loading-text-words:nth-child(6) {
+    animation-delay: 0.5s;
+  }
+  .loading-text-words:nth-child(7) {
+    animation-delay: 0.6s;
+  }
+  .loading-text-words:nth-child(8) {
+    animation-delay: 0.7s;
+  }
+  .loading-text-words:nth-child(9) {
+    animation-delay: 0.8s;
+  }
+  .loading-text-words:nth-child(10) {
+    animation-delay: 0.9s;
+  }
+  
+  .loading .dot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    margin-left: calc(-10px / 2);
+    margin-top: calc(-10px / 2);
+    perspective: 80px;
+    transform-style: preserve-3d;
+  }
+  
+  .loading .dot::before,
+  .loading .dot::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  
+  .loading .dot::before {
+    background: #000;
+    top: -100%;
+    animation: moveBlack 2000ms infinite;
+  }
+  
+  .loading .dot::after {
+    background: #fff;
+    top: 100%;
+    animation: moveWhite 2000ms infinite;
+  }
+  
+  @keyframes moveBlack {
+    0% {
+      animation-timing-function: ease-in;
+    }
+    25% {
+      transform: translate3d(0, 100%, 10px);
+      animation-timing-function: ease-out;
+    }
+    50% {
+      transform: translate3d(0, 200%, 0);
+      animation-timing-function: ease-in;
+    }
+    75% {
+      transform: translate3d(0, 100%, -10px);
+      animation-timing-function: ease-out;
+    }
+  }
+  
+  @keyframes moveWhite {
+    0% {
+      animation-timing-function: ease-in;
+    }
+    25% {
+      transform: translate3d(0, -100%, -10px);
+      animation-timing-function: ease-out;
+    }
+    50% {
+      transform: translate3d(0, -200%, 0);
+      animation-timing-function: ease-in;
+    }
+    75% {
+      transform: translate3d(0, -100%, 10px);
+      animation-timing-function: ease-out;
+    }
+  }
+  
+  .dot:nth-child(1) {
+    transform: rotate(calc(360deg / 36 * 1)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(1)::before,
+  .dot:nth-child(1)::after {
+    animation-delay: -333.33333333ms;
+  }
+  .dot:nth-child(2) {
+    transform: rotate(calc(360deg / 36 * 2)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(2)::before,
+  .dot:nth-child(2)::after {
+    animation-delay: -666.66666667ms;
+  }
+  .dot:nth-child(3) {
+    transform: rotate(calc(360deg / 36 * 3)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(3)::before,
+  .dot:nth-child(3)::after {
+    animation-delay: -1000ms;
+  }
+  .dot:nth-child(4) {
+    transform: rotate(calc(360deg / 36 * 4)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(4)::before,
+  .dot:nth-child(4)::after {
+    animation-delay: -1333.33333333ms;
+  }
+  .dot:nth-child(5) {
+    transform: rotate(calc(360deg / 36 * 5)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(5)::before,
+  .dot:nth-child(5)::after {
+    animation-delay: -1666.66666667ms;
+  }
+  .dot:nth-child(6) {
+    transform: rotate(calc(360deg / 36 * 6)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(6)::before,
+  .dot:nth-child(6)::after {
+    animation-delay: -2000ms;
+  }
+  .dot:nth-child(7) {
+    transform: rotate(calc(360deg / 36 * 7)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(7)::before,
+  .dot:nth-child(7)::after {
+    animation-delay: -2333.33333333ms;
+  }
+  .dot:nth-child(8) {
+    transform: rotate(calc(360deg / 36 * 8)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(8)::before,
+  .dot:nth-child(8)::after {
+    animation-delay: -2666.66666667ms;
+  }
+  .dot:nth-child(9) {
+    transform: rotate(calc(360deg / 36 * 9)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(9)::before,
+  .dot:nth-child(9)::after {
+    animation-delay: -3000ms;
+  }
+  .dot:nth-child(10) {
+    transform: rotate(calc(360deg / 36 * 10)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(10)::before,
+  .dot:nth-child(10)::after {
+    animation-delay: -3333.33333333ms;
+  }
+  .dot:nth-child(11) {
+    transform: rotate(calc(360deg / 36 * 11)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(11)::before,
+  .dot:nth-child(11)::after {
+    animation-delay: -3666.66666667ms;
+  }
+  .dot:nth-child(12) {
+    transform: rotate(calc(360deg / 36 * 12)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(12)::before,
+  .dot:nth-child(12)::after {
+    animation-delay: -4000ms;
+  }
+  .dot:nth-child(13) {
+    transform: rotate(calc(360deg / 36 * 13)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(13)::before,
+  .dot:nth-child(13)::after {
+    animation-delay: -4333.33333333ms;
+  }
+  .dot:nth-child(14) {
+    transform: rotate(calc(360deg / 36 * 14)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(14)::before,
+  .dot:nth-child(14)::after {
+    animation-delay: -4666.66666667ms;
+  }
+  .dot:nth-child(15) {
+    transform: rotate(calc(360deg / 36 * 15)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(15)::before,
+  .dot:nth-child(15)::after {
+    animation-delay: -5000ms;
+  }
+  .dot:nth-child(16) {
+    transform: rotate(calc(360deg / 36 * 16)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(16)::before,
+  .dot:nth-child(16)::after {
+    animation-delay: -5333.33333333ms;
+  }
+  .dot:nth-child(17) {
+    transform: rotate(calc(360deg / 36 * 17)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(17)::before,
+  .dot:nth-child(17)::after {
+    animation-delay: -5666.66666667ms;
+  }
+  .dot:nth-child(18) {
+    transform: rotate(calc(360deg / 36 * 18)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(18)::before,
+  .dot:nth-child(18)::after {
+    animation-delay: -6000ms;
+  }
+  .dot:nth-child(19) {
+    transform: rotate(calc(360deg / 36 * 19)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(19)::before,
+  .dot:nth-child(19)::after {
+    animation-delay: -6333.33333333ms;
+  }
+  .dot:nth-child(20) {
+    transform: rotate(calc(360deg / 36 * 20)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(20)::before,
+  .dot:nth-child(20)::after {
+    animation-delay: -6666.66666667ms;
+  }
+  .dot:nth-child(21) {
+    transform: rotate(calc(360deg / 36 * 21)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(21)::before,
+  .dot:nth-child(21)::after {
+    animation-delay: -7000ms;
+  }
+  .dot:nth-child(22) {
+    transform: rotate(calc(360deg / 36 * 22)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(22)::before,
+  .dot:nth-child(22)::after {
+    animation-delay: -7333.33333333ms;
+  }
+  .dot:nth-child(23) {
+    transform: rotate(calc(360deg / 36 * 23)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(23)::before,
+  .dot:nth-child(23)::after {
+    animation-delay: -7666.66666667ms;
+  }
+  .dot:nth-child(24) {
+    transform: rotate(calc(360deg / 36 * 24)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(24)::before,
+  .dot:nth-child(24)::after {
+    animation-delay: -8000ms;
+  }
+  .dot:nth-child(25) {
+    transform: rotate(calc(360deg / 36 * 25)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(25)::before,
+  .dot:nth-child(25)::after {
+    animation-delay: -8333.33333333ms;
+  }
+  .dot:nth-child(26) {
+    transform: rotate(calc(360deg / 36 * 26)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(26)::before,
+  .dot:nth-child(26)::after {
+    animation-delay: -8666.66666667ms;
+  }
+  .dot:nth-child(27) {
+    transform: rotate(calc(360deg / 36 * 27)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(27)::before,
+  .dot:nth-child(27)::after {
+    animation-delay: -9000ms;
+  }
+  .dot:nth-child(28) {
+    transform: rotate(calc(360deg / 36 * 28)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(28)::before,
+  .dot:nth-child(28)::after {
+    animation-delay: -9333.33333333ms;
+  }
+  .dot:nth-child(29) {
+    transform: rotate(calc(360deg / 36 * 29)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(29)::before,
+  .dot:nth-child(29)::after {
+    animation-delay: -9666.66666667ms;
+  }
+  .dot:nth-child(30) {
+    transform: rotate(calc(360deg / 36 * 30)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(30)::before,
+  .dot:nth-child(30)::after {
+    animation-delay: -10000ms;
+  }
+  .dot:nth-child(31) {
+    transform: rotate(calc(360deg / 36 * 31)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(31)::before,
+  .dot:nth-child(31)::after {
+    animation-delay: -10333.33333333ms;
+  }
+  .dot:nth-child(32) {
+    transform: rotate(calc(360deg / 36 * 32)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(32)::before,
+  .dot:nth-child(32)::after {
+    animation-delay: -10666.66666667ms;
+  }
+  .dot:nth-child(33) {
+    transform: rotate(calc(360deg / 36 * 33)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(33)::before,
+  .dot:nth-child(33)::after {
+    animation-delay: -11000ms;
+  }
+  .dot:nth-child(34) {
+    transform: rotate(calc(360deg / 36 * 34)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(34)::before,
+  .dot:nth-child(34)::after {
+    animation-delay: -11333.33333333ms;
+  }
+  .dot:nth-child(35) {
+    transform: rotate(calc(360deg / 36 * 35)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(35)::before,
+  .dot:nth-child(35)::after {
+    animation-delay: -11666.66666667ms;
+  }
+  .dot:nth-child(36) {
+    transform: rotate(calc(360deg / 36 * 36)) translateY(calc(-150px / 2));
+  }
+  .dot:nth-child(36)::before,
+  .dot:nth-child(36)::after {
+    animation-delay: -12000ms;
+  }
+</style>
+
+<!-- 加载动画脚本 -->
+<script>
+  window.addEventListener('load', function() {
+    // 页面加载完成后隐藏加载动画
+    document.documentElement.classList.add('js-loaded');
+    
+    // 确保1秒后完全移除加载动画
+    setTimeout(function() {
+      var preloader = document.getElementById('preloader');
+      if (preloader) {
+        preloader.style.display = 'none';
+      }
+    }, 1000);
+  });
+</script>
+<% } %> 

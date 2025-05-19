@@ -1,0 +1,223 @@
+# ===============
+# Header (页眉配置)
+# ===============
+
+# Navigation menu (导航菜单配置)
+# 格式: 菜单名称: 链接地址
+menu:
+  Home: /
+  Archives: /archives
+  # 可添加更多菜单项，如:
+  # Categories: /categories
+  # Tags: /tags
+  # About: /about
+
+# RSS link (RSS链接)
+rss: /atom.xml
+
+# Path of title banner image of page top (页面顶部标题横幅图片路径)
+banner: "https://s2.loli.net/2025/05/12/lvRs7VKSpwTh5bA.jpg"
+
+# Subtitle of page top (页面顶部副标题)
+subtitle:
+
+# Header links with icon, specified links will appear at the top right corner of the page
+# Each name must correspond to the icon name of Fork Awesome
+# https://forkaweso.me/Fork-Awesome/icons/
+# (页眉图标链接，指定的链接将显示在页面右上角，每个名称必须对应Fork Awesome的图标名称)
+links:
+#  github: https://github.com/your_github_account
+#  twitter: https://twitter.com/your_twitter_account
+#  telegram: https://t.me/your_telegram_account
+#  可添加更多社交媒体链接，如:
+#  facebook: https://facebook.com/your_facebook_account
+#  linkedin: https://linkedin.com/in/your_linkedin_account
+#  email: mailto:your_email@example.com
+
+# ===============
+# Content (内容配置)
+# ===============
+
+# "Read More" link at the bottom of excerpted articles. `false` to hide the link.
+# (文章摘要底部的"阅读更多"链接，设置为`false`可隐藏该链接)
+excerpt_link: Read More
+
+# Enable fancybox (启用fancybox图片查看插件)
+# 设置为true时，点击文章中的图片可以弹出查看大图
+fancybox: true
+
+# ===============
+# Footer (页脚配置)
+# ===============
+
+# Display copyright notice in footer. Please see https://creativecommons.org/choose/ and https://choosealicense.com/
+# You can use html like below.
+# (在页脚显示版权声明，可参考https://creativecommons.org/choose/和https://choosealicense.com/，支持HTML格式)
+# copyright: |-
+#   <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a></br>
+#   All website licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></br>
+copyright:
+
+# ===============
+# Sidebar (侧边栏配置)
+# ===============
+
+# Sidebar style. You can choose `left`, `right`, `bottom` or `false`.
+# (侧边栏样式，可选择`left`左侧，`right`右侧，`bottom`底部或`false`不显示)
+sidebar: right
+
+# Widgets displaying in sidebar
+# (侧边栏显示的小工具)
+widgets:
+# - category      # 分类
+# - tag           # 标签
+# - tagcloud      # 标签云
+- archive       # 归档
+# - recent_posts  # 最近文章
+# 可添加更多小工具，如:
+# - search      # 搜索框
+# - author      # 作者信息
+
+# ===============
+# Widget behavior (小工具行为配置)
+# ===============
+
+# 归档类型: 'yearly'按年, 'monthly'按月
+archive_type: 'monthly'
+
+# 是否显示分类和标签的文章数量
+show_count: false
+
+# How many posts display in Home page.
+# (首页显示的文章数量)
+recent_posts_limits: 1
+
+# ===============
+# Miscellaneous (其他杂项配置)
+# ===============
+
+# Google Analytics ID (Google分析跟踪ID)
+# google_analytics:
+# gauges_analytics:
+
+# Favicon path (网站图标路径)
+favicon: /img/favicon.ico
+
+# Twitter ID (Twitter ID配置)
+# twitter:
+# fb_admins:
+# fb_app_id:
+
+# ===============
+# Comment system (评论系统配置)
+# ===============
+
+# Disqus comment system. (Disqus评论系统)
+disqus_shortname:
+
+# valine comment system. https://valine.js.org
+# (Valine评论系统配置，详见https://valine.js.org)
+valine:
+  enable: false # if you want use valine,please set this value is true (如需启用Valine，请将此值设为true)
+  appId:  # leancloud application app id (LeanCloud应用的AppID)
+  appKey:  # leancloud application app key (LeanCloud应用的AppKey)
+  notify: false # valine mail notify (true/false) https://github.com/xCss/Valine/wiki (邮件通知功能)
+  verify: false # valine verify code (true/false) (验证码功能)
+  pageSize: 10 # comment list page size (评论列表分页大小)
+  avatar: mm # gravatar style https://valine.js.org/#/avatar (Gravatar头像样式)
+  lang: zh-cn # i18n: zh-cn/en (语言设置：中文或英文)
+  placeholder: Just go go # valine comment input placeholder (评论框占位提示文字)
+  guest_info: nick,mail,link # valine comment header info (评论者信息设置)
+
+# ===============
+# 高级设置 (Advanced Settings)
+# ===============
+
+# 代码高亮主题，可选值: default, night, night eighties, night blue, night bright
+highlight_theme: default
+
+# 文章目录设置
+toc:
+  enable: true    # 是否启用文章目录
+#   number: true    # 是否显示目录编号
+#   max_depth: 3    # 目录最大深度
+
+# 文章封面图设置
+# cover:
+#   enable: true    # 是否启用文章封面图
+#   position: both  # 封面图显示位置: both(列表和文章页), home(仅列表), post(仅文章页)
+
+# 网站SEO设置
+# seo:
+#   keywords:       # 网站关键词
+#   description:    # 网站描述
+
+# 页面加载动画
+preloader: true
+
+# 数学公式支持
+mathjax: true
+
+# 图片懒加载
+lazyload: true
+
+# 平滑滚动
+# smooth_scroll: false
+
+# 文章字数统计
+wordcount:
+  enable: false   # 是否启用字数统计
+  show_time: true # 是否显示阅读时间
+
+# ===============
+# 首页配置 (Home Page Settings)
+# ===============
+
+# 首页配置
+home:
+  # 自定义HTML文件路径（相对于主题的layout目录）
+  # html_file: 'custom-home'
+
+# 作者信息配置
+author:
+  # 作者头像
+  avatar: https://s2.loli.net/2025/05/13/Oxrzy5VWMJSUw8I.jpg
+  # 作者简介
+  bio: 这里是作者的个人简介，可以写一些关于自己的介绍。
+  # 联系方式
+  contacts:
+    github: https://github.com/fox142857
+    email: fox142857@foxmail.com
+    # 可以添加更多联系方式
+    # twitter: https://twitter.com/your-twitter
+    # facebook: https://facebook.com/your-facebook
+    # weibo: https://weibo.com/your-weibo
+
+# 打赏配置
+reward:
+  # 微信收款码图片路径
+  wechat: https://s2.loli.net/2025/05/13/HIojbpTQK6OvdD8.jpg
+  # 支付宝收款码图片路径
+  alipay: https://s2.loli.net/2025/05/13/JqGi4kdQyOaLfVr.jpg
+
+# 自定义图片配置
+custom_images:
+  # 自定义头像
+  avatar: https://s2.loli.net/2025/05/13/UWKOYw6y8nfzlR2.jpg
+  # 自定义微信支付码
+  wechat_pay: https://s2.loli.net/2025/05/13/HjV8uYhdFo9pPAw.jpg
+  # 自定义支付宝支付码
+  alipay: https://s2.loli.net/2025/05/13/zPhSZbn7Aft5mvq.jpg
+
+# ===============
+# 归档页面配置 (Archive Page Settings)
+# ===============
+
+# 归档页面排除设置
+archive_exclude:
+  # 排除特定文章（通过文章路径）
+  posts: 
+    # - '2023/01/01/specific-post/' 
+  # 排除特定目录（通过目录路径）
+  directories:
+    - 'home'
