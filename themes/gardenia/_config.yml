@@ -196,18 +196,18 @@ author:
 # 打赏配置
 reward:
   # 微信收款码图片路径
-  wechat: https://s2.loli.net/2025/05/13/HIojbpTQK6OvdD8.jpg
+  wechat: https://i.postimg.cc/j5dKpyP6/image.jpg
   # 支付宝收款码图片路径
-  alipay: https://s2.loli.net/2025/05/13/JqGi4kdQyOaLfVr.jpg
+  alipay: https://i.postimg.cc/j5dKpyP6/image.jpg
 
 # 自定义图片配置
 custom_images:
   # 自定义头像
   avatar: https://s2.loli.net/2025/05/13/UWKOYw6y8nfzlR2.jpg
   # 自定义微信支付码
-  wechat_pay: https://s2.loli.net/2025/05/13/HjV8uYhdFo9pPAw.jpg
+  wechat_pay: https://i.postimg.cc/j5dKpyP6/image.jpg
   # 自定义支付宝支付码
-  alipay: https://s2.loli.net/2025/05/13/zPhSZbn7Aft5mvq.jpg
+  alipay: https://i.postimg.cc/j5dKpyP6/image.jpg
 
 # ===============
 # 归档页面配置 (Archive Page Settings)
