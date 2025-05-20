@@ -1,0 +1,211 @@
+/* 移动端优化 CSS */
+
+/* 防止初始加载时页面内容延迟显示 */
+html, body {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* 优化移动端初始加载 */
+body {
+  display: block !important;
+  font-size: 13px !important;
+}
+
+/* 移动端布局优化 */
+@media screen and (max-width: 479px) {
+  /* 确保内容立即显示 */
+  #container {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+  
+  /* 修复移动导航 */
+  #mobile-nav {
+    position: fixed !important;
+    transform: none !important;
+    transition: left 0.3s ease !important;
+    left: -280px !important; /* 确保默认状态下导航栏隐藏 */
+    top: 0 !important;
+    width: 100px !important;
+    height: 100% !important;
+    z-index: 999 !important;
+    background: #191919 !important;
+    overflow-y: auto !important;
+  }
+  
+  /* 移动导航打开状态 */
+  .mobile-nav-on #mobile-nav {
+    left: 0 !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) !important;
+    padding-top: 10%;
+  }
+
+  .mobile-nav-on #mobile-nav .mobile-nav-link {
+    background: #353535;
+    border: 1px solid #454545;
+  }
+  
+  /* 确保移动导航栏默认不显示 */
+  body:not(.mobile-nav-on) #wrap {
+    left: 0 !important;
+  }
+  
+  /* 优化移动端文章布局 */
+  .article {
+    margin-bottom: 20px !important;
+    padding: 15px !important;
+  }
+  
+  /* 优化头部布局 */
+  #header {
+    height: auto !important;
+    min-height: 200px !important;
+    position: relative !important;
+  }
+  
+  /* 修复头部标题位置 */
+  #header-title {
+    position: relative !important;
+    top: auto !important;
+    margin-top: 60px !important;
+  }
+  
+  /* 修复header-inner位置 */
+  #header-inner {
+    position: relative !important;
+    top: var(--header-inner-offset, 0) !important;
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 0 !important;
+    text-align: center !important;
+    z-index: 10 !important;
+    transition: top 0.3s ease !important; /* 添加过渡效果 */
+  }
+  
+  /* 优化main-nav在移动端的显示 */
+  #main-nav {
+    float: none !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    width: 100% !important;
+    padding-top: 0 !important; /* 移除顶部内边距，由JS动态设置位置 */
+  }
+  
+  /* 优化导航按钮样式 */
+  #main-nav-toggle .fa-bars {
+    color: #ff3545 !important;
+    font-size: 18px !important;
+  }
+  
+  /* 显示移动端导航链接 */
+  #main-nav-toggle {
+    display: none !important;
+  }
+  
+  /* 优化页面加载时的过渡效果 */
+  #wrap {
+    transition: left 0.3s ease !important;
+    position: relative !important;
+    left: 0 !important;
+  }
+  
+  .mobile-nav-on #wrap {
+    left: 280px !important;
+  }
+  
+  /* 将搜索和RSS图标移到header上 */
+  #sub-nav {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    z-index: 100 !important;
+  }
+  
+  /* 优化搜索框 */
+  #search-form-wrap {
+    transition: none !important;
+    right: 0 !important;
+    width: 50% !important;
+    top: 60px !important;
+    z-index: 100 !important;
+  }
+  
+  /* 搜索框显示状态 */
+  #search-form-wrap.on {
+    opacity: 1 !important;
+    top: 60px !important;
+    width: 50% !important;
+    margin: 0 10px !important;
+  }
+  
+  /* 搜索框样式 */
+  .search-form {
+    width: 100% !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+    border-radius: 8px !important;
+  }
+  
+  /* 修复图片加载问题 */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* 修复背景图片显示 */
+  #banner {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: 
+      linear-gradient(
+          to top,
+          #eee   5%,
+          #ffffff00  35%
+        ),
+      url('https://s2.loli.net/2025/05/12/lvRs7VKSpwTh5bA.jpg') center #eee !important;
+    background-size: cover !important;
+    z-index: 1 !important;
+  }
+  
+  /* 移动端不显示分点样式 */
+  .blog-intro ul, .author-bio ul {
+    list-style-type: none !important;
+    padding-left: 0 !important;
+  }
+  
+  /* 博客简介的二级标题缩小，确保在移动端一行显示 */
+  .blog-intro h2 {
+    font-size: 0.9rem !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  /* 个人简介文本样式 */
+  .author-bio p {
+    font-size: 1.0rem !important;
+  }
+  
+  /* 博客简介文本样式 */
+  .blog-intro-content p {
+    font-size: 0.8rem !important;
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    width: 100% !important;
+  }
+}
+
+/* 添加页面预加载样式 */
+.js-loading body {
+  visibility: hidden;
+}
+
+/* 页面加载完成后的样式 */
+.js-loaded body {
+  visibility: visible;
+  transition: visibility 0s linear 0s;
+}
