@@ -1,3 +1,11 @@
+---
+title: 面试自我介绍内容
+date: 2025-05-20 08:00:00
+tags: 
+---
+
+# Interview Self Introduction
+
 Good afternoon, interviewers, thank you for this opportunity.
 
 My name is Zhang Zhenhong, and I am a junior from GCC majoring in Computer Science and Technology. 
@@ -15,3 +23,5 @@ In daily life, I am a person who is full of energy and loves life. I like singin
 Thank you again for giving me this opportunity. 
 
 I look forward to the opportunity to join your team and officially become a member of the internship program, and fight side by side with the team in the future.
+
+That's all I have to say about myself. Thank you for listening.
